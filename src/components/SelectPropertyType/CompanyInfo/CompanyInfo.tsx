@@ -9,14 +9,12 @@ const countries = [
     { value: "us", label: "United States" },
     { value: "ca", label: "Canada" },
     { value: "uk", label: "United Kingdom" },
-    // Add more as needed
 ];
 
 const states = [
     { value: "tx", label: "Texas" },
     { value: "ca", label: "California" },
     { value: "ny", label: "New York" },
-    // Add more as needed
 ];
 
 const CompanyInfo = () => {

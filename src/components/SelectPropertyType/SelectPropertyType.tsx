@@ -13,10 +13,13 @@ import CompanyInfo from "./CompanyInfo/CompanyInfo";
 import { useState } from "react";
 import Ownership from "./Ownership/Ownership";
 import Verification from "./Verification/Verification";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const SelectPropertyType = () => {
     const [selectedType, setSelectedType] = useState(0);
     const [selectedRole, setSelectedRole] = useState(0);
+    const path = useRouter()
 
     const propertyTypesData = [
         {
@@ -58,6 +61,13 @@ const SelectPropertyType = () => {
             image: property.src
         },
     ];
+    const handelSubmit = () => {
+        if (selectedType === 3 && (selectedRole === 1 || selectedRole === 2 || selectedRole === 3)) {
+            path.push("/information");
+        } else {
+            toast("Please select a valid property type and role.")
+        }
+    }
     return (
         <div>
             <div className="space-y-8">
@@ -104,7 +114,7 @@ const SelectPropertyType = () => {
             }
             <div className="mt-8 flex items-center justify-between px-4">
                 <p className="text-black underline font-bold cursor-pointer">Back</p>
-                <Button className="bg-blue-300 text-white hover:bg-blue-500 cursor-pointer" variant="secondary">Get Started</Button>
+                <Button onClick={handelSubmit} className={`${(selectedType === 3 && (selectedRole === 1 || selectedRole === 2 || selectedRole === 3)) ? "bg-blue-500 cursor-pointer" : "bg-blue-300"} text-white hover:text-black`} variant="secondary">Get Started</Button>
             </div>
         </div>
     );
