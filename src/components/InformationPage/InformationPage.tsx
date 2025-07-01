@@ -1,9 +1,26 @@
+"use client"
+import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
 import { Label } from "../ui/label";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../ui/select";
+import AboutModal from "./Modals/AboutModal";
+import AgreementModal from "./Modals/AgreementModal";
+import ChargesModals from "./Modals/ChargesModals";
+import FeaturesModal from "./Modals/FeaturesModal";
+import InstitutionModal from "./Modals/InstitutionModal";
+import LandmarkModal from "./Modals/LandmarkModal";
+import LeasingInfoModal from "./Modals/LeasingInfoModal";
+import NearestStationModal from "./Modals/NearestStationModal";
+import ParkingModal from "./Modals/ParkingModal";
+import PetFeesModal from "./Modals/PetFeesModal";
+import PropertyAddressModal from "./Modals/PropertyAddressModal";
+import ReminderModal from "./Modals/ReminderModal";
+import UtilitiesModal from "./Modals/UtilitiesModal";
 import PropertyGallery from "./PropertyGallery/PropertyGallery";
+import { useState } from "react";
 
 const InformationPage = () => {
+    const route = useRouter();
 
     const informationData = [
         {
@@ -92,6 +109,11 @@ const InformationPage = () => {
         { id: 3, name: "Video Three" },
     ];
 
+    const handleOnClick = () => {
+        route.push("/profile-info");
+    }
+
+    const [modalOpen, setModalOpen] = useState(0);
     return (
         <div>
             <Label className="ml-1 pb-4" htmlFor="condominiums_information">Condominiums information</Label>
@@ -101,7 +123,10 @@ const InformationPage = () => {
                         informationData.slice(0, 7).map((item) => (
                             <div key={item.id} className={`${item.id === 7 ? "pb-0" : "pb-3 border-b-2"} flex items-center gap-2 justify-between border-gray-200`}>
                                 <p className="text-sm font-medium text-black">{item.title} {item.requiredText && <span className={`${item.required ? "text-red-500" : "text-gray-700"} font-normal`}>({item.requiredText})</span>}</p>
-                                <button className="text-blue-500 w-12 flex gap-0.5 justify-end font-medium text-sm cursor-pointer">+ <span className="underline">Add</span></button>
+                                <button
+                                    className="text-blue-500 w-12 flex gap-0.5 justify-end font-medium text-sm cursor-pointer"
+                                    onClick={() => setModalOpen(item.id)}
+                                >+ <span className="underline">Add</span></button>
                             </div>
                         ))
                     }
@@ -111,7 +136,10 @@ const InformationPage = () => {
                         informationData.slice(7).map((item) => (
                             <div key={item.id} className={`${item.id === 13 ? "pb-0" : "pb-3 border-b-2"} flex items-center gap-2 justify-between border-gray-200`}>
                                 <p className="text-sm font-medium text-black">{item.title} {item.requiredText && <span className={`${item.required ? "text-red-500" : "text-gray-700"} font-normal`}>({item.requiredText})</span>}</p>
-                                <button className="w-12 flex gap-0.5 justify-end text-blue-500 font-medium text-sm cursor-pointer">+ <span className="underline">Add</span></button>
+                                <button
+                                    className="w-12 flex gap-0.5 justify-end text-blue-500 font-medium text-sm cursor-pointer"
+                                    onClick={() => setModalOpen(item.id)}
+                                >+ <span className="underline">Add</span></button>
                             </div>
                         ))
                     }
@@ -138,8 +166,21 @@ const InformationPage = () => {
             </div>
             <div className="mt-8 flex items-center justify-between px-4">
                 <p className="text-black underline font-bold cursor-pointer">Back</p>
-                <Button className={`${1 == 1 ? "bg-blue-500 cursor-pointer" : "bg-blue-300"} text-white hover:text-black`} variant="secondary">Get Started</Button>
+                <Button onClick={handleOnClick} className={`bg-blue-500 cursor-pointer text-white hover:text-black`} variant="secondary">Get Started</Button>
             </div>
+            <PropertyAddressModal setModalOpen={setModalOpen} modalOpen={(modalOpen === 1)} />
+            <LeasingInfoModal setModalOpen={setModalOpen} modalOpen={(modalOpen === 2)} />
+            <ChargesModals setModalOpen={setModalOpen} modalOpen={(modalOpen === 3)} />
+            <ReminderModal setModalOpen={setModalOpen} modalOpen={(modalOpen === 4)} />
+            <AgreementModal setModalOpen={setModalOpen} modalOpen={(modalOpen === 5)} />
+            <AboutModal setModalOpen={setModalOpen} modalOpen={(modalOpen === 6)} />
+            <FeaturesModal setModalOpen={setModalOpen} modalOpen={(modalOpen === 7)} />
+            <PetFeesModal setModalOpen={setModalOpen} modalOpen={(modalOpen === 8)} />
+            <ParkingModal setModalOpen={setModalOpen} modalOpen={(modalOpen === 9)} />
+            <InstitutionModal setModalOpen={setModalOpen} modalOpen={(modalOpen === 10)} />
+            <NearestStationModal setModalOpen={setModalOpen} modalOpen={(modalOpen === 11)} />
+            <LandmarkModal setModalOpen={setModalOpen} modalOpen={(modalOpen === 12)} />
+            <UtilitiesModal setModalOpen={setModalOpen} modalOpen={(modalOpen === 13)} />
         </div >
     );
 };

@@ -10,7 +10,7 @@ const PropertyGallery = () => {
             </div>
             <div className="py-2 px-4 flex gap-4 mt-4">
                 <div>
-                    <Label htmlFor="cover-upload">Featured photos <span className="text-red-500">*</span></Label>
+                    <Label>Featured photos <span className="text-red-500">*</span></Label>
                     <div className="flex flex-col md:flex-row gap-2 justify-start">
                         {/* Large Cover Photo */}
                         <div className="grid grid-cols-4 grid-rows-2 gap-2 mt-2">
@@ -51,7 +51,7 @@ const PropertyGallery = () => {
                     </div>
                 </div>
                 <div>
-                    <Label htmlFor="cover-upload">More photos(optional)</Label>
+                    <Label>More photos(optional)</Label>
                     <div className="flex flex-col md:flex-row gap-2 justify-start">
                         {/* Large Cover Photo */}
                         <div className="grid grid-cols-4 grid-rows-2 gap-2 mt-2">
