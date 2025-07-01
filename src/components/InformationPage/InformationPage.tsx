@@ -21,6 +21,7 @@ import { useState } from "react";
 
 const InformationPage = () => {
     const route = useRouter();
+    const [modalOpen, setModalOpen] = useState(0);
 
     const informationData = [
         {
@@ -113,7 +114,6 @@ const InformationPage = () => {
         route.push("/profile-info");
     }
 
-    const [modalOpen, setModalOpen] = useState(0);
     return (
         <div>
             <Label className="ml-1 pb-4" htmlFor="condominiums_information">Condominiums information</Label>

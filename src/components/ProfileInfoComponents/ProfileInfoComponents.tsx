@@ -7,8 +7,13 @@ import PriceCard from './PriceCard/PriceCard';
 import { useState } from 'react';
 import creditCard from "@/assets/icons/feature/credit-card.png";
 import Image from 'next/image';
+import AddNewCardModal from './Modals/AddNewCardModal';
 
 const ProfileInfoComponents = () => {
+    const [modalOpen, setModalOpen] = useState(false);
+    const [tab, setTab] = useState('monthly');
+    const [activeIndex, setActiveIndex] = useState(0);
+    
     const plans = [
         {
             type: 'monthly',
@@ -58,9 +63,6 @@ const ProfileInfoComponents = () => {
         }
     ];
 
-
-    const [tab, setTab] = useState('monthly');
-    const [activeIndex, setActiveIndex] = useState(0);
     return (
         <div>
             <div className='mt-2'>
@@ -94,7 +96,7 @@ const ProfileInfoComponents = () => {
                 <div className='mt-8 shadow-xs p-4'>
                     <div className='flex items-center justify-between gap-2'>
                         <Label className='text-base'>Payment option</Label>
-                        <Label className="text-blue-500 underline font-bold cursor-pointer">Add new card </Label>
+                        <Label onClick={() => { setModalOpen(true) }} className="text-blue-500 underline font-bold cursor-pointer">Add new card </Label>
                     </div>
                     <div>
                         <div className='flex justify-between items-center gap-2 py-1.5'>
@@ -137,6 +139,7 @@ const ProfileInfoComponents = () => {
                     <Button className={`bg-blue-500 cursor-pointer text-white hover:text-black`} variant="secondary">Pay & add property</Button>
                 </div>
             </div>
+            <AddNewCardModal setModalOpen={setModalOpen} modalOpen={modalOpen} />
         </div>
     );
 };
